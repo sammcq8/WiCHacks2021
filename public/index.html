@@ -32,8 +32,8 @@
 		<h4>Login</h4>
 		<div id = "login_form">
 		<form>
-			<input type = "text" name = "username" value = "Username"><br>
-			<input type = "text" name = "password" value = "Password"><br>
+			<input type = "text" name = "username" value = "Username" id = "username"><br>
+			<input type = "text" name = "password" value = "Password" id = "password"><br>
 			<input type = "submit">
 		</form>
 		</div>
@@ -79,6 +79,19 @@
           loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
         }
       });
+
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+
+      db.collection("users").doc(username).set({
+       password: password
+      })
+      .then(() => {
+       console.log("Document successfully written!");
+       })
+       .catch((error) => {
+         console.error("Error writing document: ", error);
+       });
     </script>
   </body>
 </html>
