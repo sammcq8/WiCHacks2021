@@ -37,7 +37,7 @@
 		<form id = "login_form">
 			<input type = "text" name = "username" id = "username"><br>
 			<input type = "text" name = "password" id = "password"><br>
-      <input type="button" onclick="submit()">
+      <input type="button" onclick="user_login()" value="log in">
 		</form>
 		</div>
 		<div id = "sign_up_notice">
@@ -71,7 +71,8 @@
         }
       };
 
-    function submit(){
+    function user_login(){
+      console.log("Starting submit function")
       
       var username = document.getElementById("username").value;
       var password = document.getElementById("password").value;
@@ -82,6 +83,14 @@
           var user = doc.data();
           // Use a user instance method
           console.log(user.toString());
+
+          if (user.password == password) {
+            document.getElementById("message").innerHTML = "Success!";
+          }
+          else {
+
+            document.getElementById("message").innerHTML = "Thats not the right password!";
+          }
         
         } else {
           console.log("No such document!");
@@ -93,15 +102,7 @@
       
 	}
   
-  //if (users.password == password) {
-  //  document.getElementById("message").innerHTML = "Success!";
-  //}
-  //else {
-
-  //  document.getElementById("message").innerHTML = "Sumthin went wrong  : (";
-  //}
-	//document.getElementById("message").innerHTML = "test";
-  //    document.getElementById("login_form").onsubmit = submit();
+  
 
       </script>
   </body>
