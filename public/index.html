@@ -86,7 +86,7 @@
 		
 		var users = db.collection("users").doc(username).get();
 		
-		if users.password == password{
+		if (users.password == password){
 			document.getElementById("message").innerHTML = "Success!";
 		}
 		else{
