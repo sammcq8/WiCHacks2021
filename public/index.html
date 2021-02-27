@@ -30,8 +30,8 @@
 	<center>
 		<h1>Energy Monitor</h1>
 		<h4>Login</h4>
-		<div id = "login_form">
-		<form>
+		<div id = "login_form_div">
+		<form id = "login_form">
 			<input type = "text" name = "username" value = "Username" id = "username"><br>
 			<input type = "text" name = "password" value = "Password" id = "password"><br>
 			<input type = "submit">
@@ -80,16 +80,24 @@
           loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
         }
       });
+      function submit(){
+		var username = document.getElementById("username").value;
+		var password = document.getElementById("password").value;
+		
+		var users = db.collection("users").doc(username).get();
+		
+		if users.password == password{
+			document.getElementById("message").innerHTML = "Success!";
+		}
+		else{
 
-      var username = document.getElementById("username").value;
-      var password = document.getElementById("password").value;
+			document.getElementById("message").innerHTML = "Sumthin went wrong  : (";
+		}
+	}
 
-      var users = db.collection("users").doc(username).get();
-      
-      if users.password == password{
-	document.getElementById("message").innerHTML = "Success!"
-      }
 
-    </script>
+      document.getElementById("login_form").onsubmit = submit();
+
+      </script>
   </body>
 </html>
