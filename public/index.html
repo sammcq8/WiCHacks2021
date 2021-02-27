@@ -40,6 +40,7 @@
 		<div id = "sign_up_notice">
 			<p>Don't have an account? <a href = "/sign-up.html">Sign up here.</a>
 		</div>
+		<p id = "message"></p>
 	</center>
 
     <script>
@@ -83,15 +84,12 @@
       var username = document.getElementById("username").value;
       var password = document.getElementById("password").value;
 
-      db.collection("users").doc(username).set({
-       password: password
-      })
-      .then(() => {
-       console.log("Document successfully written!");
-       })
-       .catch((error) => {
-         console.error("Error writing document: ", error);
-       });
+      var users = db.collection("users").doc(username).get();
+      
+      if users.password == password{
+	document.getElementById("message").innerHTML = "Success!"
+      }
+
     </script>
   </body>
 </html>
