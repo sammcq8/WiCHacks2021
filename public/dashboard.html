@@ -1,5 +1,28 @@
 <html>
 <head>
+
+	<script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+
+
+	<script>
+		// Your web app's Firebase configuration
+		var firebaseConfig = {
+			apiKey: "AIzaSyBZHOCoQiHyeTIsYQsR_rD0QzHQv0RaAbA",
+			authDomain: "wichacks2021.firebaseapp.com",
+			databaseURL: "https://wichacks2021-default-rtdb.firebaseio.com",
+			projectId: "wichacks2021",
+			storageBucket: "wichacks2021.appspot.com",
+			messagingSenderId: "205291654588",
+			appId: "1:205291654588:web:5f58beb8bc0afb3a3c6fb9"
+		};
+		// Initialize Firebase
+		firebase.initializeApp(firebaseConfig);
+
+		var db = firebase.firestore();
+	</script>
+
+
 </head>
 <body>
 </body>
@@ -7,7 +30,29 @@
 	<div id = "dashboard_main">
 		<div id = "dashboard_col1">
 			<div id = "welcome">
-				<h3>Welcome, User!</h3>
+
+				<h3 id="welcome">Welcome, User!</h3>
+				<script type="text/javascript" src="\scripts\app.js"></script>
+				<script>
+					var element = document.getElementById("welcome");
+
+					db.collection("users").doc("CurrentlyLoggedIn").withConverter(userConverter).get().then((doc) => {
+							if (doc.exists) {
+								
+								var user = doc.data();
+								element.innerHTML ="Welcome, " + user.name + "!";
+
+							} else {
+								console.log("No logged in user!");
+							}
+						}).catch((error) => {
+							console.log("Error getting user:", error);
+						});;
+
+				</script>
+
+				
+
 			</div>
 			<div id = "online_devices">
 				<h4>Online Devices</h4>
