@@ -79,7 +79,7 @@ function user_signup() {
         var currentUser = db.collection("users").doc("CurrentlyLoggedIn");
 
         currentUser.update({
-            name: user.name
+            name: name
         }).then(() => {
             console.log("Current User");
         })
