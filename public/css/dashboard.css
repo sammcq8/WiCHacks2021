@@ -9,10 +9,20 @@
 	float: right;
 }
 #dashboard_main{
-	margin: 5% 5%;
+	margin: 2.5% 5%;
 	background-color: #e3c7f0;
 	border-radius: 2.5%;
-	height: 100vh;
+	height: 100%;
+}
+#title{
+	margin: 2.5% 0% 0% 2.5%;
+	font-size: 60px;
+}
+#welcome{
+	font-size: 40px;
+}
+#online_devices h4{
+	font-size: 20px;
 }
 
 
