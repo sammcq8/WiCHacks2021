@@ -40,7 +40,7 @@ function user_login() {
 
                 // Set the "capital" field of the city 'DC'
                 currentUser.update({
-                    user: user.name
+                    name: user.name
                 }).then(() => {
                         console.log("Current User");
                 })
