@@ -78,14 +78,17 @@
 </html>
 
 <script>
+
+function makeGraph(labelList, dataList){
+
 var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: labelList,
         datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            label: 'kWh of Energy',
+            data: dataList,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -115,32 +118,47 @@ var myChart = new Chart(ctx, {
         }
     }
 });
-</script>
-<script>
-	var query = db.collection("electronicDevices").where("status", "==", "on")
-	.get()
-        .then((querySnapshot) => {
-        	querySnapshot.forEach((doc) => {
-			document.getElementById("online_devices_list").innerHTML += doc.data().name;
-			document.getElementById("online_devices_list").innerHTML += "</br>";
-            		console.log(doc.id, " => ", typeof doc.data().name);
-        	});
-    	})
+
+}
+
+function listDevices(query){
+	let deviceList = "";
+	console.log(query);
+	for(i = 0; i< query.docs.length; i++){
+		deviceList += query.docs[i].data().name;
+		console.log(query.docs[i].data().name);
+	}
+	document.getElementById("online_devices_list").innerHTML = deviceList;
+	return deviceList;
+}	
+	db.collection("electronicDevices").where("status", "==", "on").get().then(doc => listDevices(doc));	
+
+	db.collection("electronicDevices").get().then(query => {
+		let categories = [];
+		let kWh = [];
+		for(i = 0; i< query.docs.length; i++){
+			if (!categories.includes(query.docs[i].data().category)){
+				categories.push(query.docs[i].data().category);
+				kWh.push(query.docs[i].data().kWh);
+			}
+			else{
+				kWh[categories.indexOf(query.docs[i].data().category)] += query.docs[i].data().kWh;
+			}
+		}
+		makeGraph(categories, kWh);		
+
+	});
 
 	//var query = db.collection("electronicDevices").where("status", "==", "on")
 	//.get()
-	//.then((querySnapshot) => {
-	//	deviceList = "";
-	//	for (doc in querySnapshot){
-	//		deviceList += doc.data().name;
-	//	}
-	//	return deviceList;
-	//});
+        //.then((querySnapshot) => {
+        //	querySnapshot.forEach((doc) => {
+	//		document.getElementById("online_devices_list").innerHTML += doc.data().name;
+	//		document.getElementById("online_devices_list").innerHTML += "</br>";
+         //   		console.log(doc.id, " => ", typeof doc.data().name);
+        //	});
+		
+    	//})
 
-	//console.log(query, typeof query);
-	//console.log(devices.docs, typeof devices.docs);
-	//for (doc in devices.docs){
-	//	console.log(doc.data().name);
-	//}
 	
 </script>
