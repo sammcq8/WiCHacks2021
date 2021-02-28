@@ -64,22 +64,26 @@
 				<h4>Online Devices</h4>
 				<p id = "online_devices_list"></p>
 			</div>
+			<div id = "monthly_goal">
+				<h4>Energy Goal: </h4>
+			</div>
 			<div id = "energy_suggestion">
 				<p>You've used 15% more energy with your AC/Heat this month than last month. Have you replaced your air filters within the past 6 months?</p>
-			</div> 
+			</div>
+			<center><div id = "energy_pie_chart" style = "width: 500px; height: 500px">
+				<canvas id = "myChart2" width = "100%" height = "100%"></canvas>
+			</div></center> 
 		</div> 
 		<div id = "dashboard_col2">
 			<div id = "energy_bar_graph">
-			<canvas id="myChart" width="400" height="400"></canvas>
-			</div>
-			<div id = "energy_pie_chart">
+			<canvas id="myChart" width="400" height="400"</canvas>
 		</div>
 	</div>
 </html>
 
 <script>
 
-function makeGraph(labelList, dataList){
+function makeBarGraph(labelList, dataList){
 
 var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {
@@ -109,6 +113,8 @@ var myChart = new Chart(ctx, {
         }]
     },
     options: {
+	responsive: true,
+	maintainAspectRatio: false,
         scales: {
             yAxes: [{
                 ticks: {
@@ -121,11 +127,32 @@ var myChart = new Chart(ctx, {
 
 }
 
+function makePieChart(energyUsed) {
+var ctx = document.getElementById('myChart2').getContext('2d');
+var myChart = new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: ['% of Energy Used', '% of Energy Goal Remaining'],
+        datasets: [{
+          label: 'Amount of Energy Used This Month',
+          data: [energyUsed, 10000-energyUsed],
+          backgroundColor: [
+            'rgb(255, 99, 132)',
+            'rgb(54, 162, 235)',
+            'rgb(255, 205, 86)'
+          ],
+          hoverOffset: 4
+        }]
+      }
+});
+}
+
 function listDevices(query){
 	let deviceList = "";
 	console.log(query);
 	for(i = 0; i< query.docs.length; i++){
 		deviceList += query.docs[i].data().name;
+		deviceList += "</br>";
 		console.log(query.docs[i].data().name);
 	}
 	document.getElementById("online_devices_list").innerHTML = deviceList;
@@ -145,9 +172,18 @@ function listDevices(query){
 				kWh[categories.indexOf(query.docs[i].data().category)] += query.docs[i].data().kWh;
 			}
 		}
-		makeGraph(categories, kWh);		
-
+		makeBarGraph(categories, kWh);
+		let energyUsed = 0;
+		for (j = 0; j < kWh.length; j++){
+			energyUsed += kWh[j];
+		}
+		console.log(energyUsed);
+		makePieChart(energyUsed);
+		document.getElementById("monthly_goal").innerHTML += energyUsed;
+		document.getElementById("monthly_goal").innerHTML += "/10000";		
+	
 	});
+
 
 	//var query = db.collection("electronicDevices").where("status", "==", "on")
 	//.get()
