@@ -60,3 +60,33 @@ function user_login() {
         console.log("Error getting user:", error);
         document.getElementById("message").innerHTML = "Thats user does not exist.";
     });;}
+
+
+function user_signup() {
+    console.log("Starting submit function")
+
+    var name = document.getElementById("username").value;
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+
+    db.collection("users").doc(username).set({
+        name: name,
+        password: password
+
+    }).then(() => {
+        console.log("Signup Successful")
+
+        currentUser.update({
+            name: user.name
+        }).then(() => {
+            console.log("Current User");
+        })
+        setTimeout(function () {
+            window.location.href = "https://wichacks2021.web.app/dashboard.html";
+        }, 1000);
+
+    } ).catch((error) => {
+        console.log("Error getting user:", error);
+        document.getElementById("message").innerHTML = "Thats user does not exist.";
+    });;
+}
