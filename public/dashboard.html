@@ -116,4 +116,33 @@ var myChart = new Chart(ctx, {
     }
 });
 </script>
+<script>
+	//var deviceList = "test";
+	//var query = db.collection("electronicDevices").where("status", "==", "on")
+	//.get()
+        //.then((querySnapshot) => {
+        //	querySnapshot.forEach((doc) => {
+	//		deviceList += doc.data().name;
+        //    		console.log(doc.id, " => ", typeof doc.data().name);
+        //	});
+    	//})
+	//console.log(typeof deviceList, deviceList);
+	//document.getElementById("online_devices_list").innerHTML = deviceList;
 
+	var query = db.collection("electronicDevices").where("status", "==", "on")
+	.get()
+	.then((querySnapshot) => {
+		deviceList = "";
+		for (doc in querySnapshot){
+			deviceList += doc.data().name;
+		}
+		return deviceList;
+	});
+
+	console.log(query, typeof query);
+	console.log(devices.docs, typeof devices.docs);
+	for (doc in devices.docs){
+		console.log(doc.data().name);
+	}
+	
+</script>
