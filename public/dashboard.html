@@ -64,12 +64,15 @@
 				<h4>Online Devices</h4>
 				<p id = "online_devices_list"></p>
 			</div>
+			<div id = "monthly_goal">
+				<h4>Energy Goal: </h4>
+			</div>
 			<div id = "energy_suggestion">
 				<p>You've used 15% more energy with your AC/Heat this month than last month. Have you replaced your air filters within the past 6 months?</p>
 			</div>
-			<div id = "energy_pie_chart" style = "width: 500px; height: 500px">
+			<center><div id = "energy_pie_chart" style = "width: 500px; height: 500px">
 				<canvas id = "myChart2" width = "100%" height = "100%"></canvas>
-			</div> 
+			</div></center> 
 		</div> 
 		<div id = "dashboard_col2">
 			<div id = "energy_bar_graph">
@@ -149,6 +152,7 @@ function listDevices(query){
 	console.log(query);
 	for(i = 0; i< query.docs.length; i++){
 		deviceList += query.docs[i].data().name;
+		deviceList += "</br>";
 		console.log(query.docs[i].data().name);
 	}
 	document.getElementById("online_devices_list").innerHTML = deviceList;
@@ -174,7 +178,9 @@ function listDevices(query){
 			energyUsed += kWh[j];
 		}
 		console.log(energyUsed);
-		makePieChart(energyUsed);		
+		makePieChart(energyUsed);
+		document.getElementById("monthly_goal").innerHTML += energyUsed;
+		document.getElementById("monthly_goal").innerHTML += "/10000";		
 	
 	});
 
