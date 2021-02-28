@@ -65,7 +65,7 @@ function user_login() {
 function user_signup() {
     console.log("Starting submit function")
 
-    var name = document.getElementById("username").value;
+    var name = document.getElementById("name").value;
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
 
@@ -75,6 +75,8 @@ function user_signup() {
 
     }).then(() => {
         console.log("Signup Successful")
+
+        var currentUser = db.collection("users").doc("CurrentlyLoggedIn");
 
         currentUser.update({
             name: user.name
