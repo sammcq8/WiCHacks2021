@@ -1,0 +1,18 @@
+#dashboard_col1{
+	padding: 5% 5%;
+	width: 50%;
+	float: left;
+}
+#dashboard_col2{
+	padding: 5% 5%;
+	width: 50%;
+	float: right;
+}
+#dashboard_main{
+	margin: 5% 5%;
+	background-color: #e3c7f0;
+	border-radius: 2.5%;
+	height: 100vh;
+}
+
+
