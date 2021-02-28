@@ -1,0 +1,51 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to Firebase Hosting?</title>
+    <link rel="stylesheet" href="css/standard.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link href='https://fonts.googleapis.com/css?family=Asul' rel='stylesheet'>
+    <!--google font-->
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyBZHOCoQiHyeTIsYQsR_rD0QzHQv0RaAbA",
+            authDomain: "wichacks2021.firebaseapp.com",
+            databaseURL: "https://wichacks2021-default-rtdb.firebaseio.com",
+            projectId: "wichacks2021",
+            storageBucket: "wichacks2021.appspot.com",
+            messagingSenderId: "205291654588",
+            appId: "1:205291654588:web:5f58beb8bc0afb3a3c6fb9"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        var db = firebase.firestore();
+    </script>
+
+</head>
+
+
+<body>
+
+    <h1>Outlets</h1>
+    
+    <div class="content">
+    
+        <form id="outlets-form"></form>
+    
+        <ul id="outlets-list"></ul>
+    
+    </div>
+
+    <script src="scripts/outlets.js"></script>
+
+
+</body>
+</html>
