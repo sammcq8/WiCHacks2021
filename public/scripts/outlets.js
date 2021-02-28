@@ -17,6 +17,10 @@ function renderOutletList(doc) {
     outletList.appendChild(li);
 }
 
+function addTotal(kwh){
+    totalkWh+=kwh;
+}
+
 // getting data
 db.collection('electronicDevices').get().then(snapshot => {
     
@@ -29,3 +33,22 @@ db.collection('electronicDevices').get().then(snapshot => {
     });
 });
 
+db.collection('electronicDevices').get().then(snapshot => {
+    snapshot.docs.forEach(doc => {
+        addTotal(doc.data().kWh)
+    });
+})
+
+
+let li = document.createElement('li');
+let title = document.createElement('span');
+let kWh = document.createElement('span');
+
+li.setAttribute('data-id', doc.id);
+title.textContent = "All Devices:";
+kWh.textContent = "Total Power Usage: " + totalkWh + "kWh";
+
+li.appendChild(title);
+li.appendChild(kWh);
+
+outletList.appendChild(li);
