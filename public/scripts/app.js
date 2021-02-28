@@ -44,8 +44,10 @@ function user_login() {
                 }).then(() => {
                         console.log("Current User");
                 })
-
-                window.location.href = "https://wichacks2021.web.app/dashboard.html";
+                setTimeout(function(){
+                    window.location.href = "https://wichacks2021.web.app/dashboard.html";
+                }, 1000);
+                
             }
             else {
                 document.getElementById("message").innerHTML = "Thats not the right password!";
