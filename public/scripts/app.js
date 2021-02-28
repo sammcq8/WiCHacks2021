@@ -20,6 +20,23 @@ var userConverter = {
     }
 };
 
+function addDevice(){
+	var name = document.getElementById("device").value;
+	var outletNum = document.getElementById("outletNum").value;
+	var category = document.getElementById("category").value;
+
+	db.collection("electronicDevices").add({
+    name: name,
+    id: outletNum,
+    category: category,
+    status: "off",
+    kWh: 0
+})
+
+console.log("addDevice ran");
+document.getElementById("device_message").innerHTML = "Device Added!"
+}
+
 function user_login() {
     console.log("Starting submit function")
 
