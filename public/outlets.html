@@ -35,19 +35,31 @@
 <body>
 
     <h1>Outlets</h1>
+
     
     <div class="content">
+
+	<h4>Outlets in Use</h4>
+	<h4 id = "totalEnergy">Total Power Used: </h4>    
     
-        <form id="outlets-form"></form>
-    
-        <ul id="outlets-list">
-            <li>Devices in Use:</li>
-        </ul>
+        <ul id="outlets-list"></ul>
     
     </div>
 
     <script src="scripts/outlets.js"></script>
 
+	<div id = "addOutletForm">
+		<form>
+			<p>Device Name <input name = "device" id = "device" type = "text"></p>
+			<p>Outlet Number <input name = "outletNum" id = "outletNum" type = "text"></p>
+			<p>Category <input name = "category" id = "category" type = "text"></p>
+			<p><input type = "button" onclick = "addDevice()" value = "Add Device"</p>
+		</form>
+	</div>
 
 </body>
 </html>
+
+<script>
+	
+</script>
