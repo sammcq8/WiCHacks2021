@@ -1,33 +1,56 @@
-<!DOCTYPE html>
 <html>
 
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Welcome to Firebase Hosting?</title>
-        <link rel="stylesheet" href="css/standard.css">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to Firebase Hosting?</title>
+    <link rel="stylesheet" href="css/standard.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link href='https://fonts.googleapis.com/css?family=Asul' rel='stylesheet'>
+    <!--google font-->
 
-        <!-- update the version number as needed -->
-        <script defer src="/__/firebase/8.2.9/firebase-app.js"></script>
-        <!-- include only the Firebase features as you need -->
-        <script defer src="/__/firebase/8.2.9/firebase-auth.js"></script>
-        <script defer src="/__/firebase/8.2.9/firebase-database.js"></script>
-        <script defer src="/__/firebase/8.2.9/firebase-firestore.js"></script>
-        <script defer src="/__/firebase/8.2.9/firebase-functions.js"></script>
-        <script defer src="/__/firebase/8.2.9/firebase-messaging.js"></script>
-        <script defer src="/__/firebase/8.2.9/firebase-storage.js"></script>
-        <script defer src="/__/firebase/8.2.9/firebase-analytics.js"></script>
-        <script defer src="/__/firebase/8.2.9/firebase-remote-config.js"></script>
-        <script defer src="/__/firebase/8.2.9/firebase-performance.js"></script>
-        <!-- 
-        initialize the SDK after all desired features are loaded, set useEmulator to false
-        to avoid connecting the SDK to running emulators.
-        -->
-        <script defer src="/__/firebase/init.js?useEmulator=true"></script>
-    </head>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
 
-    <body>
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyBZHOCoQiHyeTIsYQsR_rD0QzHQv0RaAbA",
+            authDomain: "wichacks2021.firebaseapp.com",
+            databaseURL: "https://wichacks2021-default-rtdb.firebaseio.com",
+            projectId: "wichacks2021",
+            storageBucket: "wichacks2021.appspot.com",
+            messagingSenderId: "205291654588",
+            appId: "1:205291654588:web:5f58beb8bc0afb3a3c6fb9"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
 
-        
-    </body>
+        var db = firebase.firestore();
+    </script>
+
+</head>
+
+<body>
+
+    <center>
+        <h1>Energy Monitor</h1>
+        <h4>Sign Up</h4>
+        <div id="signup_form_div">
+            <form id="signup_form">
+                Name: <input type="text" name="name" id="name"><br>
+                Username: <input type="text" name="username" id="username"><br>
+                Password: <input type="password" name="password" id="password"><br>
+                <script type="text/javascript" src="\scripts\app.js"></script>
+                <input type="button" onclick="user_signup()" value="sign up">
+            </form>
+        </div>
+        <p id="message"></p>
+    </center>
+
+    <script>
+
+    </script>
+</body>
+
 </html>
